@@ -77,4 +77,14 @@ test.describe('Login Page Tests', () => {
   await page.goto('http://localhost:4200/customer-update?username=merry123');
 });
 
+//verify the validation message is displayed when username and password is blank
+
+test("Check for Username and Password Validation", async ({ page }) => {        
+    await loginButton.click();
+    const usernameValidationMessage = page.locator('text=Username is required');
+    const passwordValidationMessage = page.locator('text=Password is required');
+    await expect(usernameValidationMessage).toBeVisible();
+    await expect(passwordValidationMessage).toBeVisible();        
+    });
+
 });
